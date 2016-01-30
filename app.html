@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="quote-tab">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Quote Tab</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+        <script src="app.js"></script>
+        <script src="appService.js"></script>
+        <script src="appController.js"></script>
+    </head>
+    <body ng-controller="appController">
+        <div>
+            <input type="text" ng-model="myName" palceholder="Enter name here">
+            <h1>Hello, {{ myName }}!</h1>
+        </div>
+    </body>
+</html>
