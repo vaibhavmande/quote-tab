@@ -1,9 +1,12 @@
 angular.module('quote-tab').controller('appController', ['$scope', 'appService', function($scope, appService) {
 
-	$scope.appService = appService;
+	$scope.quotes = [];
+	$scope.isQuotesDataSet = false;
 
-	$scope.appService.fetch();
-	$scope.appService.getAll(function(data) {
-		$scope.quotes = data;
-	});
+	if( false === $scope.isQuotesDataSet && $scope.quotes.length <= 0 ) {
+		var data = appService.fetchOrGet().then(function(data){
+			$scope.quotes = data;
+		});
+	}
+
 }]);

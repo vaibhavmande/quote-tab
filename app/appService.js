@@ -1,13 +1,19 @@
-angular.module('quote-tab', []).service('appService', [function() {
-	var _this = this;
-	this.data = [];
+angular.module('quote-tab').service('appService', ['theySaidSoService', function(theySaidSoService) {
 
-	this.fetch = function() {
-		_this.data.push('this is a test quote');
-		_this.data.push('Another Quote');
+	var _this = this;
+	this.quotes = [];
+
+	this.fetchOrGet = function() {
+		/*return theySaidSoService.fetchQOD().then(function(data){
+			return data;
+		});*/
+		console.log(theySaidSoService.fetchInspireQuote().then());
+		theySaidSoService.fetchInspireQuote().then(function(inspireQuote){
+			console.log(inspireQuote);
+		});
 	}
 
 	this.getAll = function(callback) {
-		callback(_this.data);
+		callback(_this.quotes);
 	}
 }]);
