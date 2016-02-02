@@ -4,13 +4,10 @@ angular.module('quote-tab').service('appService', ['theySaidSoService', function
 	this.quotes = [];
 
 	this.fetchOrGet = function() {
-		/*return theySaidSoService.fetchQOD().then(function(data){
-			return data;
-		});*/
-		console.log(theySaidSoService.fetchInspireQuote().then());
-		theySaidSoService.fetchInspireQuote().then(function(inspireQuote){
-			console.log(inspireQuote);
-		});
+		return {
+			'getInspireQuote': theySaidSoService.fetchInspireQuote(),
+			'getLifeQuote': theySaidSoService.fetchLifeQuote()
+		}
 	}
 
 	this.getAll = function(callback) {
