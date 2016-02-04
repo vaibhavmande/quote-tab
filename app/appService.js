@@ -13,4 +13,11 @@ angular.module('quote-tab').service('appService', ['theySaidSoService', function
 	this.getAll = function(callback) {
 		callback(_this.quotes);
 	}
+
+	this.structureQuotesData = function(data) {
+		return {
+			i : { quote: data[0].quote, author: data[0].author },
+			l : { quote: data[1].quote, author: data[1].author }
+		}
+	}
 }]);
