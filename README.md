@@ -1,2 +1,3 @@
 # QuoteTab
-Pull Quotes from theysaidso on every new chrome tab
+
+A chrome extension to display quote of the day from <a href="https://theysaidso.com/api/">They Said So</a> on every new tab page.
