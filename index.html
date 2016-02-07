@@ -12,10 +12,16 @@
         <script src="app/appService.js"></script>
         <script src="app/localStorageService.js"></script>
         <script src="app/appController.js"></script>
+
+        <link href="css/landing-page.css" rel="stylesheet">
+        <link href='https://fonts.googleapis.com/css?family=Cinzel+Decorative' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Tangerine' rel='stylesheet' type='text/css'>
     </head>
     <body ng-controller="appController">
-        <div>
-            <!-- Quote of the Day -->
+        <div class="pre-loader" ng-show="showLoader"></div>
+        <div class="quote-content" ng-show="!showLoader">
+            <div class="main">{{quotes.l.quote}}</div>
+            <div class="author">- John Doe </div>
         </div>
     </body>
 </html>

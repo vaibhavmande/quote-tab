@@ -3,7 +3,7 @@ angular.module('quote-tab').service('appService', ['theySaidSoService', function
 	var _this = this;
 	this.quotes = [];
 
-	this.fetchOrGet = function() {
+	this.fetch = function() {
 		return {
 			'getInspireQuote': theySaidSoService.fetchInspireQuote(),
 			'getLifeQuote': theySaidSoService.fetchLifeQuote()

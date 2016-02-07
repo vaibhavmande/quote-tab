@@ -1,6 +1,7 @@
 angular.module('quote-tab').controller('appController', ['$scope', 'appService', '$q', 'localStorageService', function($scope, appService, $q, localStorageService) {
 
-	$scope.quotes = [];
+	$scope.quotes = null;
+	$scope.showLoader = true;
 	var _this = this;
 
 	this.isQuotesDataSet = function() {
@@ -12,7 +13,7 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 		return new Promise(function(resolve, reject){
 
 			if( false === _this.isQuotesDataSet() ) {
-				var quoteDataHandler = appService.fetchOrGet();
+				var quoteDataHandler = appService.fetch();
 
 				$q.all([quoteDataHandler.getInspireQuote, quoteDataHandler.getLifeQuote]).then(function(quoteObjects) {
 					resolve(appService.structureQuotesData([quoteObjects[0].data.contents.quotes[0], quoteObjects[1].data.contents.quotes[0]]));
@@ -26,7 +27,9 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 	}
 
 	this.bootstrap = function() {
-		//fire UI
+        $scope.$apply(function(){
+            $scope.showLoader = false;
+        });
 		window.$scope = $scope;
 	}
 
@@ -41,6 +44,4 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 	}, function(error){
 		Error(error);
 	});
-
-
 }]);
