@@ -20,8 +20,8 @@
     <body ng-controller="appController">
         <div class="pre-loader" ng-show="showLoader"></div>
         <div class="quote-content" ng-show="!showLoader">
-            <div class="main">{{quotes.l.quote}}</div>
-            <div class="author">- John Doe </div>
+            <div class="main">{{quotes.[quoteIndexToShow].quote}}</div>
+            <div class="author">{{quotes.[quoteIndexToShow].quote}}</div>
         </div>
     </body>
 </html>
