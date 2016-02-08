@@ -2,6 +2,9 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 
 	$scope.quotes = null;
 	$scope.showLoader = true;
+	$scope.quoteIndexes = ['i', 'l'];
+	$scope.quoteIndexToShow = $scope.quoteIndexes[0];
+
 	var _this = this;
 
 	this.isQuotesDataSet = function() {
@@ -27,9 +30,10 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 	}
 
 	this.bootstrap = function() {
-        $scope.$apply(function(){
-            $scope.showLoader = false;
-        });
+		$scope.quoteIndexToShow = $scope.quoteIndexes[Math.floor(Math.random() * 2)];
+	        $scope.$apply(function(){
+	            $scope.showLoader = false;
+	        });
 		window.$scope = $scope;
 	}
 
