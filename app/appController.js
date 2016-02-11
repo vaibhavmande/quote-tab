@@ -8,7 +8,7 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 	var _this = this;
 
 	this.isQuotesDataSet = function() {
-		return ( typeof $scope.quotes == "object" ) ? true : false;
+		return ( typeof localStorageService.getItem('quotes') === 'string' ) ? true : false;
 	}
 
 	this.fetchOrGetFromApi = function() {
@@ -16,6 +16,7 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 		return new Promise(function(resolve, reject){
 
 			if( false === _this.isQuotesDataSet() ) {
+
 				var quoteDataHandler = appService.fetch();
 
 				$q.all([quoteDataHandler.getInspireQuote, quoteDataHandler.getLifeQuote]).then(function(quoteObjects) {
@@ -31,18 +32,17 @@ angular.module('quote-tab').controller('appController', ['$scope', 'appService',
 
 	this.bootstrap = function() {
 		$scope.quoteIndexToShow = $scope.quoteIndexes[Math.floor(Math.random() * 2)];
-	        $scope.$apply(function(){
-	            $scope.showLoader = false;
-	        });
-		window.$scope = $scope;
+	    $scope.$apply(function(){
+	        $scope.showLoader = false;
+	    });
 	}
 
 	var quotesDataPromise = this.fetchOrGetFromApi();
 
 	quotesDataPromise.then(function(quotes){
 		if(typeof quotes == 'object') {
-			$scope.quotes = quotes;
 			localStorageService.setItem('quotes', JSON.stringify(quotes));
+			$scope.quotes = quotes;
 			_this.bootstrap();
 		}
 	}, function(error){

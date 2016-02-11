@@ -3,7 +3,6 @@ angular.module('quote-tab').service('theySaidSoService', function($http) {
 	var _this = this;
 
 	this.endPoint = "http://quotes.rest/qod.json?category=";
-	//this.endPoint = "http://localhost/test-data/json.php?category=";
 	this.categories = ['inspire','life'];
 
 	this.fetchInspireQuote = function() {
